@@ -74,7 +74,7 @@ def add_endgame_report():
 	return "done"
 
 @app.route("/final_questions", methods=["POST"])
-def add_endgame_report():
+def final_questions():
 	print(request.args)	
 	data = request.args.get("data")
 	endgame = eval(data)
@@ -100,6 +100,7 @@ def add_endgame_report():
 	db.session.add(temp)
 	db.session.commit()
 	data = dict()
+	return "done"
 
 @app.route("/only_call_this_route_when_experiment_is_over")
 def transfer_data():

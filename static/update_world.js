@@ -6,7 +6,7 @@ import House from "/static/house.js";
 import World from "/static/world.js";
 import Vector from "/static/Vector.js";
 import Decision from "/static/decision.js";
-import decision_data from "/static/ajax_requests/decision.js";
+import end_game_data from "/static/ajax_requests/end_game.js"
 
 
 
