@@ -56,6 +56,7 @@ window.onload = () => {
 	var time = 0
 	var player_number = Math.random() * 1000000
 	var num_decisions = 0;
+	var object = {}
 	setInterval(() => {
 		if (window.is_running) {
 			if (num_decisions < 12) {
@@ -63,12 +64,19 @@ window.onload = () => {
 				if (decision != null) {
 					decisions.push(decision)
 					num_decisions += 1;
+					if (num_decisions == 5) {
+						object = {"data": JSON.stringify(decisions)};
+						end_game_data(object)
+						decisions = []
+					}
+					if (num_decisions == 11) {
+						object = {"data": JSON.stringify(decisions)};
+						end_game_data(object)
+					}
 				}
 				time+=10;
 			} else {
 				window.is_running = false;
-				var object = {"data": JSON.stringify(decisions)};
-				end_game_data(object);
 				end_game(canvas, player_number, game_data, start)
 			}
 		}
