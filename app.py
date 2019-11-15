@@ -78,8 +78,11 @@ def transfer_data():
 	playerdata = PlayerData.query.all()
 	rowcount = 0
 	for datapoint in playerdata:
-		data = eval(datapoint)
-		endgame = data[-1]
+		data = eval(datapoint.data)
+		print(data)
+		data = eval(data["data"])
+		print(data, type(data))
+		endgame = data[len(data)-1]
 		data = data[0:len(data)-1]
 		for d in data:
 			rowcount += 1

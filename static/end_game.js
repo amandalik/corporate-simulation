@@ -267,5 +267,6 @@ export default function end_game(canvas, player, game_data, start) {
 			})
 		);
 	}
+	console.log(data)
 	return data;
 }
