@@ -2,6 +2,7 @@ import ending_questions from "/static/ajax_requests/end_game.js"
 import demographicsHtml from "/static/demographics.js"
 
 export default function end_game(canvas, player, game_data, start) {
+	console.log("Here")
 	var data = {
 		"player": player,
 		"playerType": game_data["playerType"],
@@ -262,7 +263,7 @@ export default function end_game(canvas, player, game_data, start) {
 					showConfirmButton: false,
 					allowOutsideClick: false,
 					allowEscapeKey: false,
-					animation: false
+					animation: false,
 				})
 			})
 		);

@@ -66,10 +66,14 @@ window.onload = () => {
 				}
 				time+=10;
 			} else {
-				decisions.push(end_game(canvas, player_number, game_data, start))
 				window.is_running = false;
+				console.log("Before")
+				decisions.push(end_game(canvas, player_number, game_data, start))
+				console.log("After")
 				var object = {"data": JSON.stringify(decisions)};
+				console.log(object)
 				ending_questions(object);
+				console.log("Finished")
 			}
 		}
 		
