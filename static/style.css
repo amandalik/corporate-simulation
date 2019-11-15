@@ -10,7 +10,7 @@ canvas {
 	position: relative;
 	display: block;
 	margin: 0px;
-	margin-top: 5vh;
+	margin-top: 12.5vh;
 }
 
 .swal-height {
@@ -30,4 +30,16 @@ canvas {
   stroke: blue;
   /* The width of your bars */
   stroke-width: 50px;
+}
+
+.ct-chart .ct-bar:nth-of-type(3n+1) {
+  stroke: #ff726f;
+}
+
+.ct-chart .ct-bar:nth-of-type(3n+2) {
+  stroke: #87d6eb;
+}
+
+.ct-chart .ct-bar:nth-of-type(3n+3) {
+  stroke: #90ee90;
 }

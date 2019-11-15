@@ -41,7 +41,7 @@ export function presentPollutionSlide(res, world, game_data) {
 	if (!('dismiss' in res)) {
 		window.setTimeout(() => Tutorial.fire({
 			html: '<h1 style="margin: auto auto 4vh auto">Pollution</h1>' +
-			'<div style="margin: auto 6vh 13.5vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">The color of the ground shows how much pollution there is at a given location. Green is unpolluted and brown is polluted.</div>'
+			'<div style="margin: auto 6vh 13.5vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">The color of the ground shows how much pollution there is at a given location in the environment. Green is unpolluted and brown is polluted.</div>'
 		}).then(result => presentDecisionsSlide(result, world, game_data)), 2075)
 	}
 	else {
@@ -60,10 +60,8 @@ export function presentPeopleSlide(res, world, game_data) {
 	if (!('dismiss' in res)) {
 		window.setTimeout(() => Tutorial.fire({
 			html: '<h1 style="margin: auto auto 3vh auto">People</h1>' + 
-			'<div style="margin: auto 6vh 3vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">Additionally, there are ' + world.state.individuals.length.toString() + ' people that inhabit these houses. ' + 
-			'The people go to work at the corporations, and then go home each night. ' +
-			"The people are green when they're happy, and red when they're not. " +
-			"The happiness of each person is affected by how much money they make. </div>",
+			'<div style="margin: auto 6vh 3vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">There are ' + world.state.individuals.length.toString() + ' people that inhabit these houses. The people go to work as employees at the corporations, and then come home from work. The people are green when they' + 
+			"'re happy, and red when they're not. The happiness of each person is affected by how much money they make. </div>",
 			imageUrl: '/static/happy.png',
 			imageAlt: 'Custom image'
 		}).then(result => presentPollutionSlide(result, world, game_data)), 3250);
@@ -106,7 +104,7 @@ export function presentSharePriceSlide(res, world, game_data) {
 		window.setTimeout(() => Tutorial.fire({
 			html:'<h1 style="margin: auto auto 3vh auto">Share Price</h1>' +
 			'<div style="margin: auto 6vh 10.5vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">'+
-			'The current share price of each corporation is 100.</div>',
+			'The current price of each share of the corporation held by shareholders is 100.</div>',
 			imageUrl: '/static/firm-2.png',
 			imageAlt: 'Custom image'
 		}).then(result => presentHousesSlide(result, world, game_data)), 1375);
@@ -196,14 +194,14 @@ export function presentSelectedDirectorSlide(res, world, game_data) {
 			text = {
 				"ssd": "<h1 style=\"margin: auto auto 4vh auto\">Shareholder-Selected Director</h1><div style=\"margin: auto 6vh 17vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;\">You became a director via a public vote of the corporation's shareholders.</div>",
 				"emsd": "<h1 style=\"margin: auto auto 4vh auto\">Employee-Selected Director</h1><div style=\"margin: auto 6vh 17vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;\">You became a director via a public vote of the corporation's employees.</div>",
-				"ensd": "<h1 style=\"margin: auto auto 4vh auto\">Environment-Selected Director</h1><div style=\"margin: auto 6vh 17vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;\">You became a director in order to encourage environment-oriented decisions.</div>"
+				"ensd": "<h1 style=\"margin: auto auto 4vh auto\">Environment-Selected Director</h1><div style=\"margin: auto 6vh 17vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;\">You became a director via a vote by a committee of scientists who study the local and global environment in question.</div>"
 			}
 		}
 		else {
 			text = {
 				"ssd": "<h1 style=\"margin: auto auto 4vh auto\">Shareholder-Selected Director</h1><div style=\"margin: auto 6vh 13.5vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;\">You became a director via a public vote of the corporation's shareholders. There may be other directors on the board of directors as well, potentially representing other stakeholders.</div>",
 				"emsd": "<h1 style=\"margin: auto auto 4vh auto\">Employee-Selected Director</h1><div style=\"margin: auto 6vh 13.5vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;\">You became a director via a public vote of the corporation's employees. There may be other directors on the board of directors as well, potentially representing other stakeholders.</div>",
-				"ensd": "<h1 style=\"margin: auto auto 4vh auto\">Environment-Selected Director</h1><div style=\"margin: auto 6vh 13.5vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;\">You became a director in order to encourage environment-oriented decisions. There may be other directors on the board of directors as well, potentially representing other stakeholders.</div>"
+				"ensd": "<h1 style=\"margin: auto auto 4vh auto\">Environment-Selected Director</h1><div style=\"margin: auto 6vh 13.5vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;\">You became a director via a vote by a committee of scientists who study the local and global environment in question. There may be other directors on the board of directors as well, potentially representing other stakeholders.</div>"
 			}
 		}
 		Tutorial.fire({

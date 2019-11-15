@@ -143,7 +143,6 @@ export default function end_game(canvas, player, game_data, start) {
 					allowEscapeKey: false,
 					animation: false
 				})
-				return data;
 			})
 		);
 	}

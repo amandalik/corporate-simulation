@@ -163,18 +163,19 @@ function present_decision(world, player_number, game_data, num_decisions){
 
 	Swal.fire({
 	  title: 'Time for director decision ' + (num_decisions + 1).toString() + ' out of 12!',
-	  html: '<div style="text-align: left; margin-bottom: 3vh;">The two charts below show which of the three elements (share price, employee wage, and environmental impact) will be favored most by each possible decision. Weigh your decision carefully and click Decision 1 or Decision 2 to continue. ' +
+	  html: '<div style="text-align: left; margin-top: 3vh;  margin-right: 2vw; margin-bottom: 5.5vh; margin-left: 2vw;">The two charts below show which of the three elements (share price, employee wage, and environmental impact) will be favored most by each possible decision. Weigh your decision carefully and click Decision 1 or Decision 2 to continue. ' +
 	  		text[game_data.playerType] + 
-	  		'<br><br> <div style="font-size: 14px;">Here is a brief summary of the applicable law: ' +  law + '</div></div>' + 
-	        '<div class="decision1ChartContainer" style="display: inline-block; position: relative; width:30vw">' + 
-	        '<h3 style="text-align: center">Decision 1 Impacts</h3>' +
-	        '<div class="ct-chart" id="chart1" style="margin-bottom: 1vh;"></div>' + 
-	       	'<h3 style="text-align: center">Decision 2 Impacts</h3>' +
-	        '<div class="ct-chart" id="chart2"></div></div>',
+	  		'<br><br> <div style="font-size: 14px; margin-top: 0.5vh;">Here is a brief summary of the applicable law: ' +  law + '</div></div>' + 
+	        '<div class="decisionChartsContainer" style="width: 30vw; display: inline;">' + 
+	        '<button type="button" style="margin-right: 2.25vw; margin-bottom: 3vh; cursor: pointer; padding: 2vh 2vw 2vh 2vw;" id="chart1Button"><h4 style="text-align: center">Decision 1</h4>' +
+	        '<div class="ct-chart" id="chart1"></div></button>' + 
+	       	'<button type="button" id="chart2Button" style="cursor: pointer; padding: 2vh 2vw 2vh 2vw;"><h4 style="text-align: center">Decision 2</h4>' +
+	        '<div class="ct-chart" id="chart2"></div></button></div>',
 	  // background: 'rgba(255, 255, 255, 0.3)',
-	  width: 1080,
+	  width: 1325,
 	  padding: '2.5em',
-	  showCancelButton: true,
+	  showConfirmButton: false,
+	  showCancelButton: false,
 	  confirmButtonColor: '#808080',
  	  cancelButtonColor: '#808080',
  	  confirmButtonText: 'Decision 1',
@@ -184,15 +185,13 @@ function present_decision(world, player_number, game_data, num_decisions){
 	  allowEnterKey: false,
 	  animation: false,
 	  onBeforeOpen: () => {
-	    var canvases = Swal.getContent().querySelectorAll('canvas');
 	    var d = {
 	    	labels: ['Share Price', 'Employee Wage', 'Environmental Impact'],
 	    	series: [[decisions[0].impacts.sharePrice, decisions[0].impacts.employeeWage, decisions[0].impacts.environmentalImpact]]
 	    };
-
 	    var options = {
 	    	high: 1.0,
-	    	stretch: true
+	    	width: '505px'
 	    };
 
 	    new Chartist.Bar("#chart1", d, options);
@@ -203,25 +202,34 @@ function present_decision(world, player_number, game_data, num_decisions){
 	    };
 
 	    new Chartist.Bar("#chart2", d, options);
-	  }
-	}).then((result) => {
-		window.is_running = true;
 
-		let decisionMade = decisions[0];
-		data.decision = 1;
-		if (result.dismiss === 'cancel') {
-			decisionMade = decisions[1];
+	    Swal.getContent().querySelectorAll("#chart1Button")[0].onclick = () => {
+	    	window.is_running = true;
+			var decisionMade = decisions[0];
+			data.decision = 1;
+			world.state.firms[0].updateImportance(decisionMade)
+			world.state.firms[0].implement_decision(decisionMade);
+			world.state.firms[4].updateImportance(decisionMade);
+			data.new_a = world.state.firms[4].state.importances.spImportance;
+			data.new_b = world.state.firms[4].state.importances.ewImportance;
+			data.new_c = world.state.firms[4].state.importances.eiImportance;
+			Swal.close()
+	    }
+
+	    Swal.getContent().querySelectorAll("#chart2Button")[0].onclick = () => {
+	    	window.is_running = true;
+			var decisionMade = decisions[1];
 			data.decision = 2;
+			world.state.firms[0].updateImportance(decisionMade)
+			world.state.firms[0].implement_decision(decisionMade);
+			world.state.firms[4].updateImportance(decisionMade);
+			data.new_a = world.state.firms[4].state.importances.spImportance;
+			data.new_b = world.state.firms[4].state.importances.ewImportance;
+			data.new_c = world.state.firms[4].state.importances.eiImportance;
+			Swal.close()
 		}
-
-		world.state.firms[0].updateImportance(decisionMade)
-		world.state.firms[0].implement_decision(decisionMade);
-		world.state.firms[4].updateImportance(decisionMade);
-		data.new_a = world.state.firms[4].state.importances.spImportance;
-		data.new_b = world.state.firms[4].state.importances.ewImportance;
-		data.new_c = world.state.firms[4].state.importances.eiImportance;
-		// decision_data(data)
-	})
+	  }
+	});
 	return data
 }
 
