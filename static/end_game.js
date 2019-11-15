@@ -1,4 +1,5 @@
-import ending_questions from "/static/ajax_requests/end_game.js"
+import final_questions from "/static/ajax_requests/final_questions.js"
+// USE THIS TO STORE ENDING QUESTIONS ^^
 import demographicsHtml from "/static/demographics.js"
 
 export default function end_game(canvas, player, game_data, start) {

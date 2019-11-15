@@ -10,7 +10,7 @@ import Vector from "/static/Vector.js";
 import end_game from "/static/end_game.js"
 import {canvas, grid, world, instantiate, firm_1, firm_2, firm_3, firm_4, firm_5} from "/static/constants.js";
 import * as tutorial from "/static/tutorial.js";
-import ending_questions from "/static/ajax_requests/end_game.js"
+import end_game_data from "/static/ajax_requests/end_game.js"
 
 window.is_running = true;
 window.onload = () => {
@@ -69,7 +69,7 @@ window.onload = () => {
 				decisions.push(end_game(canvas, player_number, game_data, start))
 				window.is_running = false;
 				var object = {"data": JSON.stringify(decisions)};
-				ending_questions(object);
+				end_game_data(object);
 			}
 		}
 		
