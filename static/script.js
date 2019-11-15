@@ -58,7 +58,7 @@ window.onload = () => {
 	var num_decisions = 0;
 	setInterval(() => {
 		if (window.is_running) {
-			if (num_decisions < 2) {
+			if (num_decisions < 12) {
 				var decision = update_world(canvas, grid, world, firms, houses, availableHouses, individuals, time, player_number, game_data, num_decisions);
 				if (decision != null) {
 					decisions.push(decision)
