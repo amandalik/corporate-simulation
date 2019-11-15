@@ -10,7 +10,7 @@ import Vector from "/static/Vector.js";
 import end_game from "/static/end_game.js"
 import {canvas, grid, world, instantiate, firm_1, firm_2, firm_3, firm_4, firm_5} from "/static/constants.js";
 import * as tutorial from "/static/tutorial.js";
-import ending_questions from "/static/ajax_requests/end_game.js"
+import end_game_data from "/static/ajax_requests/end_game.js"
 
 window.is_running = true;
 window.onload = () => {
@@ -67,15 +67,11 @@ window.onload = () => {
 				time+=10;
 			} else {
 				window.is_running = false;
-				console.log("Before")
-				decisions.push(end_game(canvas, player_number, game_data, start))
-				console.log("After")
 				var object = {"data": JSON.stringify(decisions)};
-				console.log(object)
-				ending_questions(object);
-				console.log("Finished")
+				end_game_data(object);
+				end_game(canvas, player_number, game_data, start)
 			}
 		}
-		
+
 	}, 10);
 };

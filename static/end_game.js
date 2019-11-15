@@ -1,4 +1,5 @@
-import ending_questions from "/static/ajax_requests/end_game.js"
+import final_questions from "/static/ajax_requests/final_questions.js"
+// USE THIS TO STORE ENDING QUESTIONS ^^
 import demographicsHtml from "/static/demographics.js"
 
 export default function end_game(canvas, player, game_data, start) {
@@ -133,6 +134,7 @@ export default function end_game(canvas, player, game_data, start) {
 				data["7"] = temp[2];
 				data["8"] = temp[3];
 				data["time_taken"] = totalTime
+				final_questions(data)
 				Swal.fire({
 					type: 'success',
 					width: 720,
@@ -254,6 +256,8 @@ export default function end_game(canvas, player, game_data, start) {
 				data["7"] = temp[2];
 				data["8"] = temp[3];
 				data["time_taken"] = totalTime
+				final_questions(data)
+
 				Swal.fire({
 					type: 'success',
 					width: 720,
@@ -268,5 +272,4 @@ export default function end_game(canvas, player, game_data, start) {
 			})
 		);
 	}
-	return data;
 }

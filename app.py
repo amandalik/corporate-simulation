@@ -73,14 +73,45 @@ def add_endgame_report():
 	data = dict()
 	return "done"
 
+@app.route("/final_questions", methods=["POST"])
+def add_endgame_report():
+	print(request.args)	
+	data = request.args.get("data")
+	endgame = eval(data)
+	temp = EndQuestions(
+		player=endgame["player"],
+		playerType=endgame["playerType"],
+		sim=endgame["sim"],
+		run_id=endgame["run_id"],
+		numShareholderSelected=endgame["numShareholderSelected"],
+		numEmployeeSelected=endgame["numEmployeeSelected"],
+		numEnvironmentSelected=endgame["numEnvironmentSelected"],
+		worldType=endgame["worldType"],
+		time_taken=endgame["time_taken"],
+		q1=endgame["1"],
+		q2=endgame["2"],
+		q3=endgame["3"],
+		q4=endgame["4"],
+		q5=endgame["5"],
+		q6=endgame["6"],
+		q7=endgame["7"],
+		q8=endgame["8"]
+	)
+	db.session.add(temp)
+	db.session.commit()
+	data = dict()
+
 @app.route("/only_call_this_route_when_experiment_is_over")
 def transfer_data():
 	playerdata = PlayerData.query.all()
 	rowcount = 0
 	for datapoint in playerdata:
-		data = eval(datapoint)
-		endgame = data[-1]
-		data = data[0:len(data)-1]
+		data = eval(datapoint.data)
+		print(data)
+		data = eval(data["data"])
+		print(data, type(data))
+		#endgame = data[len(data)-1]
+		#data = data[0:len(data)-1]
 		for d in data:
 			rowcount += 1
 			choice_made = "A"
@@ -107,7 +138,7 @@ def transfer_data():
 			)
 			db.session.add(temp)
 			db.session.commit()
-		temp = EndQuestions(
+		'''temp = EndQuestions(
 			player=endgame["player"],
 			playerType=endgame["playerType"],
 			sim=endgame["sim"],
@@ -127,7 +158,7 @@ def transfer_data():
 			q8=d["8"]
 		)
 		db.session.add(temp)
-		db.session.commit()
+		db.session.commit()'''
 	return "done"
 
 @app.route("/", methods=["GET", "POST"])
