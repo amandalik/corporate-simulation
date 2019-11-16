@@ -78,6 +78,13 @@ function is_decision_making(time){
 	}
 }
 
+function is_decision_making_no_sim(time){
+	if (time != 0)
+	{
+		return time%2000 == 0
+	}
+}
+
 function is_time_to_update_grid(time){
 	return time%1500 == 0
 }
@@ -254,6 +261,10 @@ export default function update_world(canvas, grid, world, firms, houses, availab
 			return null;
 		}
 	} else {
-		return present_decision(world, player_number, game_data, num_decisions);
+		if (is_decision_making_no_sim(time)) {
+			return present_decision(world, player_number, game_data, num_decisions);
+		} else {
+			return null;
+		}
 	}
 }
