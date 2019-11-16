@@ -81,7 +81,7 @@ function is_decision_making(time){
 function is_decision_making_no_sim(time){
 	if (time != 0)
 	{
-		return time%3000 == 0
+		return time%2000 == 0
 	}
 }
 
