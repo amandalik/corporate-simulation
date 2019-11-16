@@ -65,12 +65,12 @@ window.onload = () => {
 					decisions.push(decision)
 					num_decisions += 1;
 					if (num_decisions == 5) {
-						object = {"data": JSON.stringify(decisions)};
+						object = {"player": player_number, "data": JSON.stringify(decisions)};
 						end_game_data(object)
 						decisions = []
 					}
 					if (num_decisions == 11) {
-						object = {"data": JSON.stringify(decisions)};
+						object = {"player": player_number, "data": JSON.stringify(decisions)};
 						end_game_data(object)
 					}
 				}
