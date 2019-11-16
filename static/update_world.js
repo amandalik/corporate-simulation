@@ -193,7 +193,7 @@ function present_decision(world, player_number, game_data, num_decisions){
 	  animation: false,
 	  onBeforeOpen: () => {
 	    var d = {
-	    	labels: ['Shareholder Benefit', 'Employee Benefit', 'Environmental Benefit'],
+	    	labels: ['Shareholder\nBenefit', 'Employee\nBenefit', 'Environmental\nBenefit'],
 	    	series: [[decisions[0].impacts.sharePrice, decisions[0].impacts.employeeWage, decisions[0].impacts.environmentalImpact]]
 	    };
 	    var options = {
@@ -204,7 +204,7 @@ function present_decision(world, player_number, game_data, num_decisions){
 	    new Chartist.Bar("#chart1", d, options);
 
 	    d = {
-	    	labels: ['Shareholder Benefit', 'Employee Benefit', 'Environmental Benefit'],
+	    	labels: ['Shareholder\nBenefit', 'Employee\nBenefit', 'Environmental\nBenefit'],
 	    	series: [[decisions[1].impacts.sharePrice, decisions[1].impacts.employeeWage, decisions[1].impacts.environmentalImpact]]
 	    };
 
