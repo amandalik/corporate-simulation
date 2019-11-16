@@ -4,8 +4,7 @@ const Tutorial = Swal.mixin({
 	confirmButtonText: '<i class="arrow right icon"></i>',
 	customClass: 'swal-height',
 	allowOutsideClick: false,
-	animation: false,
-	showCloseButton: true
+	animation: false
 });
 
 export function presentDecisionsSlide(res, world, game_data) {
