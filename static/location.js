@@ -34,7 +34,7 @@ export default class Location {
 	    var color = interpolateColors(green, brown, this.pollution);
 
 	    context.fillStyle = "rgb(" + color[0] + "," + color[1] + "," + color[2] + ")"
-		context.fillRect(this.vector.x,this.vector.y, 20, 20)
+		context.fillRect(this.vector.x,this.vector.y, 16, 16)
 	}
 
 	draw_values() {

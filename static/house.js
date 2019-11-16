@@ -9,7 +9,7 @@ export default class House {
 			grid: props.grid,
 			row: props.row,
 			col: props.col,
-			vector: new Vector(props.col*20, props.row*20),
+			vector: new Vector(props.col*16, props.row*16),
 			world: props.world,
 			firm: props.firm,
 			tenant: props.tenant,
@@ -21,7 +21,7 @@ export default class House {
 	draw() {
 
 		if (this.img == null){
-			this.img = new Image(20, 20);
+			this.img = new Image(16, 16);
 			this.img.src = '/static/house.png';
 		}
 		const context = this.state.canvas.getContext('2d');

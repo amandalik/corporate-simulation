@@ -48,7 +48,7 @@ function draw(context, individuals, grid) {
 	let x = 10;
 	let y = 100;
 	context.beginPath();
-	context.arc(x, y, 20, 0, 2 * Math.PI);
+	context.arc(x, y, 16, 0, 2 * Math.PI);
 	context.fillStyle = 'rgba(250,0,0,0.4)';
 	x += 2;
 	y += 2;
@@ -163,7 +163,7 @@ function present_decision(world, player_number, game_data, num_decisions){
 
 	Swal.fire({
 	  title: 'Time for director decision ' + (num_decisions + 1).toString() + ' out of 12!',
-	  html: '<div style="text-align: left; margin-top: 3vh;  margin-right: 2vw; margin-bottom: 5.5vh; margin-left: 2vw;">The two charts below show which of the three elements (share price, employee wage, and environmental impact) will be favored most by each possible decision. Weigh your decision carefully and click Decision 1 or Decision 2 to continue. ' +
+	  html: '<div style="text-align: left; margin-top: 3vh;  margin-right: 2vw; margin-bottom: 5.5vh; margin-left: 2vw;">The two charts below show which of the three elements (shareholder benefit, employee benefit, and environmental benefit) will be favored most by each possible decision. Weigh your decision carefully and click Decision 1 or Decision 2 to continue. ' +
 	  		text[game_data.playerType] + 
 	  		'<br><br> <div style="font-size: 14px; margin-top: 0.5vh;">Here is a brief summary of the applicable law: ' +  law + '</div></div>' + 
 	        '<div class="decisionChartsContainer" style="width: 30vw; display: inline;">' + 
@@ -186,7 +186,7 @@ function present_decision(world, player_number, game_data, num_decisions){
 	  animation: false,
 	  onBeforeOpen: () => {
 	    var d = {
-	    	labels: ['Share Price', 'Employee Wage', 'Environmental Impact'],
+	    	labels: ['Shareholder Benefit', 'Employee Benefit', 'Environmental Benefit'],
 	    	series: [[decisions[0].impacts.sharePrice, decisions[0].impacts.employeeWage, decisions[0].impacts.environmentalImpact]]
 	    };
 	    var options = {
@@ -197,7 +197,7 @@ function present_decision(world, player_number, game_data, num_decisions){
 	    new Chartist.Bar("#chart1", d, options);
 
 	    d = {
-	    	labels: ['Share Price', 'Employee Wage', 'Environmental Impact'],
+	    	labels: ['Shareholder Benefit', 'Employee Benefit', 'Environmental Benefit'],
 	    	series: [[decisions[1].impacts.sharePrice, decisions[1].impacts.employeeWage, decisions[1].impacts.environmentalImpact]]
 	    };
 

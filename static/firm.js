@@ -14,13 +14,13 @@ export default class Firm {
 			grid: props.grid,
 			row: props.row,
 			col: props.col,
-			vector: new Vector(props.col*20, props.row*20),
+			vector: new Vector(props.col*16, props.row*16),
 			world: props.world,
 			salary: props.salary,
 			importances: props.importances
 		};
 
-		this.state.sharePrice = new SharePrice(this.state.canvas, this.sharePrice, (this.state.col - 1)*20, (this.state.row - 2) * 20 - 5);
+		this.state.sharePrice = new SharePrice(this.state.canvas, this.sharePrice, (this.state.col - 1)*16, (this.state.row - 2) * 16 - 5);
 
 		this.state.grid.get_location(this.state.row, this.state.col).add(this);
 		for (let i = -2; i <= 2; i++) {
@@ -52,12 +52,12 @@ export default class Firm {
 
 	draw() {
 		if (this.img == null) {
-			this.img = new Image(80, 80);
+			this.img = new Image(48, 48);
 			this.img.src = '/static/firm.png';
 			this.img.setAttribute("id", "firm" + this.state.number.toString())
 		}
 		const context = this.state.canvas.getContext('2d');
-		context.drawImage(this.img, this.state.vector.x - 20, this.state.vector.y - 20);
+		context.drawImage(this.img, this.state.vector.x - 16, this.state.vector.y - 16);
 		if (this.drawn) {
 			this.state.sharePrice.draw();
 		}
@@ -87,7 +87,7 @@ export default class Firm {
 		const rate2 = 20.0;
 		for (let j = 0; j < this.state.grid.grid.length; j++) {
 			for (let k = 0; k < this.state.grid.grid[j].length; k++) {
-				this.state.grid.get_location(j, k).pollution = this.state.grid.get_location(j, k).pollution + (0.5-decision.impacts.environmentalImpact) * rate2/this.state.vector.distance(new Vector(k*20, j*20));				
+				this.state.grid.get_location(j, k).pollution = this.state.grid.get_location(j, k).pollution + (0.5-decision.impacts.environmentalImpact) * rate2/this.state.vector.distance(new Vector(k*16, j*16));				
 				if (decision.impacts.environmentalImpact < 0.33) {
 					this.state.waste_reduction = -10
 				} else if (decision.impacts.environmentalImpact < 0.51){
