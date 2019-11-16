@@ -35,7 +35,6 @@ window.onload = () => {
 	world.state.individuals = individuals;
 
 	var decisions = []
-	// @Ameya, store "[" + decisions.toString() + "]"
 
 	if (game_data["sim"] === 'y') {
 		grid.draw();

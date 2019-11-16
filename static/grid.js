@@ -7,7 +7,7 @@ export default class Grid {
 		for (let i = 0; i < 36; i++) {
 			this.grid[i] = new Array(64);
 			for (let j = 0; j < 64; j++) {
-				this.grid[i][j] = new Location(canvas, j * 20, i * 20);
+				this.grid[i][j] = new Location(canvas, j * 16, i * 16);
 			}
 		}
 		this.world = world;
@@ -35,7 +35,7 @@ export default class Grid {
 	}
 
 	calculate_pollution(row, col, firm_waste, firm){
-		return (firm_waste/60)/(firm.state.vector.distance(new Vector(col*20, row*20)))
+		return (firm_waste/60)/(firm.state.vector.distance(new Vector(col*16, row*16)))
 
 	}
 

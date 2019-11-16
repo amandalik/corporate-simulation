@@ -15,7 +15,7 @@ export default class Individual {
 			foodPrice: props.foodPrice
 		};
 		this.state.grid.get_location(props.row, props.col).add(this);
-		this.vector = new Vector(props.col*20, props.row*20),
+		this.vector = new Vector(props.col*16, props.row*16),
 		this.img;
 		this.drawn = false;
 	}
@@ -61,13 +61,13 @@ export default class Individual {
 
 	checkLocations(c, r, err){
 		for(let i = 0; i <= err; i++){
-			var x = (c+i)*20
-			var y = (r)*20
+			var x = (c+i)*16
+			var y = (r)*16
 			if(this.isAtLocation(x, y)){
 				return true;
 			}
-			x = (c-i)*20
-			y = (r)*20
+			x = (c-i)*16
+			y = (r)*16
 			if(this.isAtLocation(x, y)){
 				return true;
 			}
@@ -81,7 +81,7 @@ export default class Individual {
 			if (!(this.checkLocations(this.state.house.state.col, this.state.house.state.row, 0) ||
 			this.checkLocations((this.state.firm.state.col), this.state.firm.state.row, 0))) {
 				if (this.img == null){
-					this.img = new Image(20, 20);
+					this.img = new Image(16, 16);
 				}
 				if (this.state.wellbeing > (0.8)){
 					this.img.src = '/static/newHappy.png';
@@ -99,7 +99,7 @@ export default class Individual {
 		}
 		else {
 			if (this.img == null){
-				this.img = new Image(20, 20);
+				this.img = new Image(16, 16);
 			}
 
 			if (this.state.wellbeing > (0.7)){
@@ -140,7 +140,7 @@ export default class Individual {
 		this.state.firm.expenses += this.state.payRate
 		this.state.wealth -= this.state.house.rent
 		this.purchaseProducts()
-		// this.state.wellbeing = (this.state.payRate + 800*(1-this.state.grid.grid[this.state.house.state.row][this.state.house.state.col].pollution) ) / 2000
+		// this.state.wellbeing = (this.state.payRate + 800*(1-this.state.grid.grid[this.state.house.state.row][this.state.house.state.col].pollution) ) / 1600
 		this.state.wellbeing = this.state.payRate / 1200
 		this.handle_houses(start_wealth, available_houses)
 	}

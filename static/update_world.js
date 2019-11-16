@@ -48,7 +48,7 @@ function draw(context, individuals, grid) {
 	let x = 10;
 	let y = 100;
 	context.beginPath();
-	context.arc(x, y, 20, 0, 2 * Math.PI);
+	context.arc(x, y, 16, 0, 2 * Math.PI);
 	context.fillStyle = 'rgba(250,0,0,0.4)';
 	x += 2;
 	y += 2;

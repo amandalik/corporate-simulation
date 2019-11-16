@@ -11,7 +11,7 @@ export default class Resource {
 
 	draw() {
 		const context = this.state.canvas.getContext('2d');
-		ctx.fillRect(this.vector.x, this.vector.y, 20, 20);
+		ctx.fillRect(this.vector.x, this.vector.y, 16, 16);
 	}
 
 

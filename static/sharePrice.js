@@ -10,7 +10,7 @@ export default class SharePrice {
 	draw() {
 		const ctx = this.state.canvas.getContext('2d');
 		ctx.fillStyle = "white";
-		ctx.font = "15px Roboto";
-		ctx.fillText("Share price: " + this.state.value.toString(), this.state.x - 25, this.state.y + 17.5);
+		ctx.font = "12px Roboto";
+		ctx.fillText("Share price: " + this.state.value.toString(), this.state.x - 21, this.state.y + 17.5);
 	}
 }
