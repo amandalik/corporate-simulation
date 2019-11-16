@@ -157,7 +157,7 @@ function present_decision(world, player_number, game_data, num_decisions){
 	var text = {
 		"ssd": "Please keep in mind you that you were selected by shareholders.",
 		"emsd": "Please keep in mind you that you were selected by employees.",
-		"ensd": "Please keep in mind you that you were selected by environmental consultants."
+		"ensd": "Please keep in mind you that you were selected via a vote by a committee of scientists who study the local and global environment in question."
 	}
 
 	let law = ""
