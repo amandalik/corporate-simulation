@@ -112,7 +112,7 @@ def start():
 	b = reg_b.search(user_agent)
 	v = reg_v.search(user_agent[0:4])
 	if b or v:
-		return "use laptop"
+		return render_template("reject.html", data=data)
 	data = {
 		'ssd': request.args.get('ssd', default = 6, type = int),
 		'emsd': request.args.get('emsd', default = 4, type = int),
