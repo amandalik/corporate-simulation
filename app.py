@@ -17,6 +17,7 @@ db = SQLAlchemy(app)
 
 class PlayerData(db.Model):
 	__tablename__ = 'PLAYER_DATA'
+	player=db.Column(db.Float, unique=False, nullable=False, primary_key=False)
 	data=db.Column(db.String(), unique=False, nullable=False, primary_key=False)
 	time=db.Column(db.String(100), unique=True, nullable=False, primary_key=True)
 
@@ -63,14 +64,15 @@ db.create_all()
 
 @app.route("/add_endgame_report", methods=["POST"])
 def add_endgame_report():
-	print(request.args)	
+	print(request.args)
+	data = eval(request.args.get('data'))
 	my_data = PlayerData(
-			data=request.args.get('data', type=str),
-			time=str(datetime.datetime.now()).rstrip("\n")
-		)
+		player=float(data['player']),
+		data=data['data'],
+		time=str(datetime.datetime.now()).rstrip("\n")
+	)
 	db.session.add(my_data)
 	db.session.commit()
-	data = dict()
 	return "done"
 
 @app.route("/final_questions", methods=["POST"])
@@ -99,67 +101,6 @@ def final_questions():
 	)
 	db.session.add(temp)
 	db.session.commit()
-	data = dict()
-	return "done"
-
-@app.route("/only_call_this_route_when_experiment_is_over")
-def transfer_data():
-	playerdata = PlayerData.query.all()
-	rowcount = 0
-	for datapoint in playerdata:
-		data = eval(datapoint.data)
-		print(data)
-		data = eval(data["data"])
-		print(data, type(data))
-		#endgame = data[len(data)-1]
-		#data = data[0:len(data)-1]
-		for d in data:
-			rowcount += 1
-			choice_made = "A"
-			val = d["decision"]
-			rotation = d["rotation"]
-			if rotation == "reversed":
-				if val == 1:
-					choice_made = "B"
-			elif val == 2:
-				choice_made = "B"
-			temp = DecisionData(
-				player=d["player"],
-				playerType=d["playerType"],
-				numShareholderSelected=d["numShareholderSelected"],
-				sim=d["sim"],
-				numEmployeeSelected=d["numEmployeeSelected"],
-				numEnvironmentSelected=d["numEnvironmentSelected"],
-				worldType=d["worldType"],
-				rotation=d["rotation"],
-				decision_number=d["num_decision"],
-				run_id=d["run_id"],
-				choice=choice_made,
-				row=rowcount
-			)
-			db.session.add(temp)
-			db.session.commit()
-		'''temp = EndQuestions(
-			player=endgame["player"],
-			playerType=endgame["playerType"],
-			sim=endgame["sim"],
-			run_id=endgame["run_id"],
-			numShareholderSelected=endgame["numShareholderSelected"],
-			numEmployeeSelected=endgame["numEmployeeSelected"],
-			numEnvironmentSelected=endgame["numEnvironmentSelected"],
-			worldType=d["worldType"],
-			time_taken=d["time_taken"],
-			q1=d["1"],
-			q2=d["2"],
-			q3=d["3"],
-			q4=d["4"],
-			q5=d["5"],
-			q6=d["6"],
-			q7=d["7"],
-			q8=d["8"]
-		)
-		db.session.add(temp)
-		db.session.commit()'''
 	return "done"
 
 @app.route("/", methods=["GET", "POST"])

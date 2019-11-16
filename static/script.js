@@ -64,13 +64,23 @@ window.onload = () => {
 				if (decision != null) {
 					decisions.push(decision)
 					num_decisions += 1;
-					if (num_decisions == 5) {
-						object = {"data": JSON.stringify(decisions)};
+					if (num_decisions == 2) {
+						object = {"player": player_number, "data": JSON.stringify(decisions)};
 						end_game_data(object)
 						decisions = []
 					}
-					if (num_decisions == 11) {
-						object = {"data": JSON.stringify(decisions)};
+					else if (num_decisions == 5) {
+						object = {"player": player_number, "data": JSON.stringify(decisions)};
+						end_game_data(object)
+						decisions = []
+					}
+					else if (num_decisions == 8) {
+						object = {"player": player_number, "data": JSON.stringify(decisions)};
+						end_game_data(object)
+						decisions = []
+					}
+					else if (num_decisions == 11) {
+						object = {"player": player_number, "data": JSON.stringify(decisions)};
 						end_game_data(object)
 					}
 				}
