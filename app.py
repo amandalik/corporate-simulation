@@ -65,9 +65,10 @@ db.create_all()
 @app.route("/add_endgame_report", methods=["POST"])
 def add_endgame_report():
 	print(request.args)
+	data = eval(request.args.get('data'))
 	my_data = PlayerData(
-		player=request.args.get('player', type=str),
-		data=request.args.get('data', type=str),
+		player=float(data['player']),
+		data=data['data'],
 		time=str(datetime.datetime.now()).rstrip("\n")
 	)
 	db.session.add(my_data)
