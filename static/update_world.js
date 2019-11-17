@@ -157,7 +157,7 @@ function present_decision(world, player_number, game_data, num_decisions){
 	var text = {
 		"ssd": "Please keep in mind you that you were selected by shareholders.",
 		"emsd": "Please keep in mind you that you were selected by employees.",
-		"ensd": "Please keep in mind you that you were selected by environmental consultants."
+		"ensd": "Please keep in mind you that you were selected via a vote by a committee of scientists who study the local and global environment in question."
 	}
 
 	let law = ""
@@ -170,16 +170,16 @@ function present_decision(world, player_number, game_data, num_decisions){
 
 	Swal.fire({
 	  title: 'Time for director decision ' + (num_decisions + 1).toString() + ' out of 12!',
-	  html: '<div style="text-align: left; margin-top: 3vh;  margin-right: 2vw; margin-bottom: 5.5vh; margin-left: 2vw;">The two charts below show which of the three elements (shareholder benefit, employee benefit, and environmental benefit) will be favored most by each possible decision. Weigh your decision carefully and click Decision 1 or Decision 2 to continue. ' +
+	  html: '<div style="text-align: left; margin-top: 3vh;  margin-right: 2.2vw; margin-bottom: 5.5vh; margin-left: 2.4vw;">The two charts below show which of the three elements (shareholder benefit, employee benefit, and environmental benefit) will be favored most by each possible decision. Weigh your decision carefully and click Decision 1 or Decision 2 to continue. ' +
 	  		text[game_data.playerType] + 
 	  		'<br><br> <div style="font-size: 14px; margin-top: 0.5vh;">Here is a brief summary of the applicable law: ' +  law + '</div></div>' + 
 	        '<div class="decisionChartsContainer" style="width: 30vw; display: inline;">' + 
-	        '<button type="button" style="margin-right: 2.25vw; margin-bottom: 3vh; cursor: pointer; padding: 2vh 2vw 2vh 2vw;" id="chart1Button"><h4 style="text-align: center">Decision 1</h4>' +
+	        '<button type="button" style="margin-right: 2.25vw; margin-bottom: 3vh; margin-left: 2.25vw; cursor: pointer; padding: 2vh 2vw 2vh 2vw;" id="chart1Button"><h4 style="text-align: center">Decision 1</h4>' +
 	        '<div class="ct-chart" id="chart1"></div></button>' + 
-	       	'<button type="button" id="chart2Button" style="cursor: pointer; padding: 2vh 2vw 2vh 2vw;"><h4 style="text-align: center">Decision 2</h4>' +
+	       	'<button type="button" id="chart2Button" style="cursor: pointer; padding: 2vh 2vw 2vh 2vw; margin-right: 2.25vw;"><h4 style="text-align: center">Decision 2</h4>' +
 	        '<div class="ct-chart" id="chart2"></div></button></div>',
 	  // background: 'rgba(255, 255, 255, 0.3)',
-	  width: 1325,
+	  width: 1130,
 	  padding: '2.5em',
 	  showConfirmButton: false,
 	  showCancelButton: false,
@@ -193,18 +193,18 @@ function present_decision(world, player_number, game_data, num_decisions){
 	  animation: false,
 	  onBeforeOpen: () => {
 	    var d = {
-	    	labels: ['Shareholder Benefit', 'Employee Benefit', 'Environmental Benefit'],
+	    	labels: ['Shareholder\nBenefit', 'Employee\nBenefit', 'Environmental\nBenefit'],
 	    	series: [[decisions[0].impacts.sharePrice, decisions[0].impacts.employeeWage, decisions[0].impacts.environmentalImpact]]
 	    };
 	    var options = {
 	    	high: 1.0,
-	    	width: '505px'
+	    	width: '404px'
 	    };
 
 	    new Chartist.Bar("#chart1", d, options);
 
 	    d = {
-	    	labels: ['Shareholder Benefit', 'Employee Benefit', 'Environmental Benefit'],
+	    	labels: ['Shareholder\nBenefit', 'Employee\nBenefit', 'Environmental\nBenefit'],
 	    	series: [[decisions[1].impacts.sharePrice, decisions[1].impacts.employeeWage, decisions[1].impacts.environmentalImpact]]
 	    };
 
