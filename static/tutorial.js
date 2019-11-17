@@ -10,14 +10,13 @@ const Tutorial = Swal.mixin({
 export function presentDecisionsSlide(res, world, game_data) {
 	if (!('dismiss' in res)) {
 		let text = {
-			"ssd": "shareholders",
-			"emsd": "employees",
-			"ensd": "environmental consultants"
+			"ssd": "by shareholders",
+			"emsd": "by employees",
+			"ensd": "via a vote by a committee of scientists who study the local and global environment in question"
 		}
 		Tutorial.fire({
 			html: '<h1 style="margin: auto auto 4vh auto">Decisions</h1>' +
-			'<div style="margin: auto 6vh 11vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">You will now be asked to make 12 decisions. Please do your best to behave as you would if you were a real director of a corporation who had been selected via a vote by a committee of scientists who study the local and global environment in question. ' + '.</div>',
-			confirmButtonText: 'Begin!'
+			'<div style="margin: auto 6vh 11vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">You will now be asked to make 12 decisions. Please do your best to behave as you would if you were a real director of a corporation who had been selected ' + text[game_data["playerType"]] + '.</div>',			confirmButtonText: 'Begin!'
 		}).then(() => {
 			window.is_running = true;
 			for (let i = 0; i < world.state.firms.length; i++) {
