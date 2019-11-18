@@ -23,8 +23,8 @@ export default function end_game(canvas, player, game_data, start) {
 			End.getInput().style.display = 'none';
 		},
 	 	inputValidator: (value) => {
-	  		if (document.getElementById('swal-input').value.length < 50) {
-	    		return 'You need to write at least 50 characters!'
+	  		if (document.getElementById('swal-input').value.length < 100) {
+	    		return 'You need to write at least 100 characters!'
 	    	}
 	  	},
 	  	preConfirm: () => {
@@ -69,22 +69,22 @@ export default function end_game(canvas, player, game_data, start) {
 			End.queue([
 			  {
 			  	html: '<h1 style="margin: auto auto 3vh auto">Business Simulation Survey</h1>' +
-				'<div style="margin: auto 6.5vh 3vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">1. Please describe how you made your decisions. What factors did you consider when choosing between the two possibilities? Please write at least 50 characters.<br><br>' +
+				'<div style="margin: auto 6.5vh 3vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">1. Please describe how you made your decisions. What factors did you consider when choosing between the two possibilities? Please write at least 100 characters.<br><br>' +
 				'<textarea id="swal-input" rows="15" cols="82"></textarea>' +
 				'<br><div style="font-size: 15px;">(Note: You are unable to review your answers once you have submitted them)</div></div>'
 			  },
 			  {
-			    html: '<div style="margin: auto 6.5vh 3vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">2. Did you notice your decisions having any impact on the simulation?  If so, what effects did your decisions have? Please write at least 50 characters.<br><br>' +
+			    html: '<div style="margin: auto 6.5vh 3vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">2. Did you notice your decisions having any impact on the simulation?  If so, what effects did your decisions have? Please write at least 100 characters.<br><br>' +
 				'<textarea id="swal-input" rows="15" cols="82"></textarea>' +
 				'<br><div style="font-size: 15px;">(Note: You are unable to review your answers once you have submitted them)</div></div>'
 			  },
 			  {
-			  	html: '<div style="margin: auto 6.5vh 3vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">3. Did the simulation change how you thought about how to respond to the choices you needed to make as a director of a corporation?  Why or why not? Please write at least 50 characters.<br><br>' +
+			  	html: '<div style="margin: auto 6.5vh 3vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">3. Did the simulation change how you thought about how to respond to the choices you needed to make as a director of a corporation?  Why or why not? Please write at least 100 characters.<br><br>' +
 				'<textarea id="swal-input" rows="15" cols="82"></textarea>' +
 				'<br><div style="font-size: 15px;">(Note: You are unable to review your answers once you have submitted them)</div></div>'
 			  },
 			  {
-			  	html: '<div style="margin: auto 6.5vh 3vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">4. We would welcome any other thoughts you might have below. Please write at least 50 characters.<br><br>' +
+			  	html: '<div style="margin: auto 6.5vh 3vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">4. We would welcome any other thoughts you might have below. Please write at least 100 characters.<br><br>' +
 				'<textarea id="swal-input" rows="15" cols="82"></textarea>' +
 				'<br><div style="font-size: 15px;">(Note: You are unable to review your answers once you have submitted them)</div></div>'
 			  },
@@ -184,8 +184,8 @@ export default function end_game(canvas, player, game_data, start) {
 				End.getInput().style.display = 'none';
 			},
 		 	inputValidator: (value) => {
-		  		if (document.getElementById('swal-input').value.length < 50) {
-		    		return 'You need to write at least 50 characters!'
+		  		if (document.getElementById('swal-input').value.length < 100) {
+		    		return 'You need to write at least 100 characters!'
 		    	}
 		  	},
 		  	preConfirm: () => {
@@ -229,17 +229,17 @@ export default function end_game(canvas, player, game_data, start) {
 			End.queue([
 			  {
 			  	html: '<h1 style="margin: auto auto 3vh auto">Business Simulation Survey</h1>' +
-				'<div style="margin: auto 6.5vh 3vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">1. Please describe how you made your decisions. Please write at least 50 characters.<br><br>' +
+				'<div style="margin: auto 6.5vh 3vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">1. Please describe how you made your decisions. Please write at least 100 characters.<br><br>' +
 				'<textarea id="swal-input" rows="15" cols="82"></textarea>' +
 				'<br><div style="font-size: 15px;">(Note: You are unable to review your answers once you have submitted them)</div></div>'
 			  },
 			  {
-			    html: '<div style="margin: auto 6.5vh 3vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">2. What factors did you consider when choosing between the two possibilities? Please write at least 50 characters.<br><br>' +
+			    html: '<div style="margin: auto 6.5vh 3vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">2. What factors did you consider when choosing between the two possibilities? Please write at least 100 characters.<br><br>' +
 				'<textarea id="swal-input" rows="15" cols="82"></textarea>' +
 				'<br><div style="font-size: 15px;">(Note: You are unable to review your answers once you have submitted them)</div></div>'
 			  },
 			  {
-			  	html: '<div style="margin: auto 6.5vh 3vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">3. We would welcome any other thoughts you might have below. Please write at least 50 characters.<br><br>' +
+			  	html: '<div style="margin: auto 6.5vh 3vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">3. We would welcome any other thoughts you might have below. Please write at least 100 characters.<br><br>' +
 				'<textarea id="swal-input" rows="15" cols="82"></textarea>' +
 				'<br><div style="font-size: 15px;">(Note: You are unable to review your answers once you have submitted them)</div></div>'
 			  },
