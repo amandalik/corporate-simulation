@@ -34,7 +34,9 @@ window.onload = () => {
 	var individuals = instantiate.instantiate_individuals(availableHouses, canvas, grid, world, firms)
 	world.state.individuals = individuals;
 
-	var decisions = []
+	window.decisions = []
+	window.rotations = []
+	window.num_decisions = []
 
 	if (game_data["sim"] === 'y') {
 		grid.draw();
@@ -55,30 +57,19 @@ window.onload = () => {
 	var time = 0
 	var player_number = Math.random() * 1000000
 	var num_decisions = 0;
-	var object = {}
 	setInterval(() => {
 		if (window.is_running) {
+			console.log(num_decisions)
 			if (num_decisions < 12) {
 				var decision = update_world(canvas, grid, world, firms, houses, availableHouses, individuals, time, player_number, game_data, num_decisions)
 				if (decision != null) {
-					if (decision.decision != 1 && decision.decision != 2) {
-						console.log("this is a decision number " + decision.num_decision);
-					}
-					decisions.push({"decision": decision.decision, "rotation": decision.rotation})
 					num_decisions += 1
 				}
 				time+=10;
 			} else {
-				decision_array = array();
-				rotation_array = array();
-				num_decision_array = array();
-				for(var i = 0; i < 12; i++) {
-					decision_array.push(decisions[i].decision)
-					rotation_array.push(decisions[i].rotation)
-					num_decision_array.push(i+1)
-				}
-				object = {
-					decision: JSON.stringify(decision_array),
+				window.is_running = false;
+				var object = {
+					decisions: JSON.stringify(window.decisions),
 					player: player_number,
 					playerType: game_data.playerType,
 					numShareholderSelected: game_data.numShareholderSelected,
@@ -87,14 +78,13 @@ window.onload = () => {
 					worldType: game_data.worldType,
 					sim: game_data.sim,
 					run_id: game_data.run_id,
-					num_decision: JSON.stringify(num_decision_array),
-					rotation: JSON.stringify(rotation_array)
+					num_decisions: JSON.stringify(window.num_decisions),
+					rotations: JSON.stringify(window.rotations)
 				}
-				end_game_data(object)
-				window.is_running = false;
+				end_game_data({"data": JSON.stringify(object), "player": player_number})
 				end_game(canvas, player_number, game_data, start)
 			}
 		}
-
 	}, 10);
 };
+

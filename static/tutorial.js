@@ -4,20 +4,28 @@ const Tutorial = Swal.mixin({
 	confirmButtonText: '<i class="arrow right icon"></i>',
 	customClass: 'swal-height',
 	allowOutsideClick: false,
-	animation: false
+	showClass: {
+		popup: null,
+		backdrop: null,
+		icon: null
+	},
+	hideClass: {
+		popup: null,
+  		backdrop: null,
+  		icon: null
+	}
 });
 
 export function presentDecisionsSlide(res, world, game_data) {
 	if (!('dismiss' in res)) {
 		let text = {
-			"ssd": "shareholders",
-			"emsd": "employees",
-			"ensd": "environmental consultants"
+			"ssd": "by shareholders",
+			"emsd": "by employees",
+			"ensd": "via a vote by a committee of scientists who study the local and global environment in question"
 		}
 		Tutorial.fire({
 			html: '<h1 style="margin: auto auto 4vh auto">Decisions</h1>' +
-			'<div style="margin: auto 6vh 11vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">You will now be asked to make 12 decisions. Please do your best to behave as you would if you were a real director of a corporation who had been selected via a vote by a committee of scientists who study the local and global environment in question. ' + '.</div>',
-			confirmButtonText: 'Begin!'
+			'<div style="margin: auto 6vh 11vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">You will now be asked to make 12 decisions. Please do your best to behave as you would if you were a real director of a corporation who had been selected ' + text[game_data["playerType"]] + '.</div>',			confirmButtonText: 'Begin!'
 		}).then(() => {
 			window.is_running = true;
 			for (let i = 0; i < world.state.firms.length; i++) {
@@ -140,8 +148,7 @@ export function presentBoardOfDirectorsSlide(res, world, game_data) {
 		Tutorial.fire({
 			html: '<h1 style="margin: auto auto 3vh auto">Board of Directors</h1>' +
 			'<div style="margin: auto 6vh 15vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">There may be other directors on the board of directors as well, potentially representing other stakeholders.' +
-			'</div>',
-			animation: false
+			'</div>'
 		}).then(result => presentOtherFirmsSlide(result, world, game_data))
 	}
 	else {

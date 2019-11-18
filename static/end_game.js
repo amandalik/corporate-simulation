@@ -3,7 +3,6 @@ import final_questions from "/static/ajax_requests/final_questions.js"
 import demographicsHtml from "/static/demographics.js"
 
 export default function end_game(canvas, player, game_data, start) {
-	console.log("Here")
 	var data = {
 		"player": player,
 		"playerType": game_data["playerType"],
@@ -24,8 +23,8 @@ export default function end_game(canvas, player, game_data, start) {
 			End.getInput().style.display = 'none';
 		},
 	 	inputValidator: (value) => {
-	  		if (document.getElementById('swal-input').value.length < 50) {
-	    		return 'You need to write at least 50 characters!'
+	  		if (document.getElementById('swal-input').value.length < 100) {
+	    		return 'You need to write at least 100 characters!'
 	    	}
 	  	},
 	  	preConfirm: () => {
@@ -33,9 +32,18 @@ export default function end_game(canvas, player, game_data, start) {
 	  	},
 	  	allowOutsideClick: false,
 	  	allowEscapeKey: false,
-	  	animation: false,
 	  	progressSteps: ['1', '2', '3', '4', '5'],
-	  	padding: '3rem'
+	  	padding: '3rem',
+	  	showClass: {
+			popup: null,
+			backdrop: null,
+			icon: null
+		},
+		hideClass: {
+			popup: null,
+  			backdrop: null,
+  			icon: null
+		}
 	})
 
 	if (game_data["sim"] === 'y') {
@@ -45,29 +53,38 @@ export default function end_game(canvas, player, game_data, start) {
 			confirmButtonText: '<i class="arrow right icon"></i>',
 			allowOutsideClick: false,
 			allowEscapeKey: false,
-			animation: false,
 			html: '<h1 style="margin: auto auto 3vh auto">End of Part 1</h1>' + 
-			'<div style="margin: auto 6vh 9.5vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">Thank you for your decisions.  Now we\'d like to ask you a few questions about your experience with this simulation.</div>'
+			'<div style="margin: auto 6vh 9.5vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">Thank you for your decisions.  Now we\'d like to ask you a few questions about your experience with this simulation.</div>',
+			showClass: {
+				popup: null,
+				backdrop: null,
+				icon: null
+			},
+			hideClass: {
+				popup: null,
+		  		backdrop: null,
+		  		icon: null
+			}
 		}).then(() =>
 			End.queue([
 			  {
 			  	html: '<h1 style="margin: auto auto 3vh auto">Business Simulation Survey</h1>' +
-				'<div style="margin: auto 6.5vh 3vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">1. Please describe how you made your decisions. What factors did you consider when choosing between the two possibilities? Please write at least 50 characters.<br><br>' +
+				'<div style="margin: auto 6.5vh 3vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">1. Please describe how you made your decisions. What factors did you consider when choosing between the two possibilities? Please write at least 100 characters.<br><br>' +
 				'<textarea id="swal-input" rows="15" cols="82"></textarea>' +
 				'<br><div style="font-size: 15px;">(Note: You are unable to review your answers once you have submitted them)</div></div>'
 			  },
 			  {
-			    html: '<div style="margin: auto 6.5vh 3vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">2. Did you notice your decisions having any impact on the simulation?  If so, what effects did your decisions have? Please write at least 50 characters.<br><br>' +
+			    html: '<div style="margin: auto 6.5vh 3vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">2. Did you notice your decisions having any impact on the simulation?  If so, what effects did your decisions have? Please write at least 100 characters.<br><br>' +
 				'<textarea id="swal-input" rows="15" cols="82"></textarea>' +
 				'<br><div style="font-size: 15px;">(Note: You are unable to review your answers once you have submitted them)</div></div>'
 			  },
 			  {
-			  	html: '<div style="margin: auto 6.5vh 3vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">3. Did the simulation change how you thought about how to respond to the choices you needed to make as a director of a corporation?  Why or why not? Please write at least 50 characters.<br><br>' +
+			  	html: '<div style="margin: auto 6.5vh 3vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">3. Did the simulation change how you thought about how to respond to the choices you needed to make as a director of a corporation?  Why or why not? Please write at least 100 characters.<br><br>' +
 				'<textarea id="swal-input" rows="15" cols="82"></textarea>' +
 				'<br><div style="font-size: 15px;">(Note: You are unable to review your answers once you have submitted them)</div></div>'
 			  },
 			  {
-			  	html: '<div style="margin: auto 6.5vh 3vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">4. We would welcome any other thoughts you might have below. Please write at least 50 characters.<br><br>' +
+			  	html: '<div style="margin: auto 6.5vh 3vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">4. We would welcome any other thoughts you might have below. Please write at least 100 characters.<br><br>' +
 				'<textarea id="swal-input" rows="15" cols="82"></textarea>' +
 				'<br><div style="font-size: 15px;">(Note: You are unable to review your answers once you have submitted them)</div></div>'
 			  },
@@ -110,7 +127,6 @@ export default function end_game(canvas, player, game_data, start) {
 					let gender = $('.gender').dropdown('get value');
 					if (gender === "ptsd") {
 						gender = $('.description').val();
-						console.log(gender)
 					}
 					return [country, age, gender, id]
 				}
@@ -136,7 +152,7 @@ export default function end_game(canvas, player, game_data, start) {
 				data["time_taken"] = totalTime
 				final_questions(data)
 				Swal.fire({
-					type: 'success',
+					icon: 'success',
 					width: 720,
 					customClass: 'swal-height-3',
 					title: 'Thank you for participating in the Business Simulation!',
@@ -144,7 +160,16 @@ export default function end_game(canvas, player, game_data, start) {
 					showConfirmButton: false,
 					allowOutsideClick: false,
 					allowEscapeKey: false,
-					animation: false
+					showClass: {
+						popup: null,
+						backdrop: null,
+						icon: null
+					},
+					hideClass: {
+						popup: null,
+				  		backdrop: null,
+				  		icon: null
+					}
 				})
 			})
 		);
@@ -159,8 +184,8 @@ export default function end_game(canvas, player, game_data, start) {
 				End.getInput().style.display = 'none';
 			},
 		 	inputValidator: (value) => {
-		  		if (document.getElementById('swal-input').value.length < 50) {
-		    		return 'You need to write at least 50 characters!'
+		  		if (document.getElementById('swal-input').value.length < 100) {
+		    		return 'You need to write at least 100 characters!'
 		    	}
 		  	},
 		  	preConfirm: () => {
@@ -168,9 +193,18 @@ export default function end_game(canvas, player, game_data, start) {
 		  	},
 		  	allowOutsideClick: false,
 		  	allowEscapeKey: false,
-		  	animation: false,
 		  	progressSteps: ['1', '2', '3', '4'],
-		  	padding: '3rem'
+		  	padding: '3rem',
+	  		showClass: {
+				popup: null,
+				backdrop: null,
+				icon: null
+			},
+			hideClass: {
+				popup: null,
+		  		backdrop: null,
+		  		icon: null
+			}
 		})
 
 		Swal.fire({
@@ -179,24 +213,33 @@ export default function end_game(canvas, player, game_data, start) {
 			confirmButtonText: '<i class="arrow right icon"></i>',
 			allowOutsideClick: false,
 			allowEscapeKey: false,
-			animation: false,
 			html: '<h1 style="margin: auto auto 3vh auto">End of Part 1</h1>' + 
-			'<div style="margin: auto 6vh 9.5vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">Thank you for your decisions.  Now we\'d like to ask you a few questions about your experience with this simulation.</div>'
+			'<div style="margin: auto 6vh 9.5vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">Thank you for your decisions.  Now we\'d like to ask you a few questions about your experience with this simulation.</div>',
+			showClass: {
+				popup: null,
+				backdrop: null,
+				icon: null
+			},
+			hideClass: {
+				popup: null,
+		  		backdrop: null,
+		  		icon: null
+			}
 		}).then(() =>
 			End.queue([
 			  {
 			  	html: '<h1 style="margin: auto auto 3vh auto">Business Simulation Survey</h1>' +
-				'<div style="margin: auto 6.5vh 3vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">1. Please describe how you made your decisions. Please write at least 50 characters.<br><br>' +
+				'<div style="margin: auto 6.5vh 3vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">1. Please describe how you made your decisions. Please write at least 100 characters.<br><br>' +
 				'<textarea id="swal-input" rows="15" cols="82"></textarea>' +
 				'<br><div style="font-size: 15px;">(Note: You are unable to review your answers once you have submitted them)</div></div>'
 			  },
 			  {
-			    html: '<div style="margin: auto 6.5vh 3vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">2. What factors did you consider when choosing between the two possibilities? Please write at least 50 characters.<br><br>' +
+			    html: '<div style="margin: auto 6.5vh 3vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">2. What factors did you consider when choosing between the two possibilities? Please write at least 100 characters.<br><br>' +
 				'<textarea id="swal-input" rows="15" cols="82"></textarea>' +
 				'<br><div style="font-size: 15px;">(Note: You are unable to review your answers once you have submitted them)</div></div>'
 			  },
 			  {
-			  	html: '<div style="margin: auto 6.5vh 3vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">3. We would welcome any other thoughts you might have below. Please write at least 50 characters.<br><br>' +
+			  	html: '<div style="margin: auto 6.5vh 3vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">3. We would welcome any other thoughts you might have below. Please write at least 100 characters.<br><br>' +
 				'<textarea id="swal-input" rows="15" cols="82"></textarea>' +
 				'<br><div style="font-size: 15px;">(Note: You are unable to review your answers once you have submitted them)</div></div>'
 			  },
@@ -259,7 +302,7 @@ export default function end_game(canvas, player, game_data, start) {
 				final_questions(data)
 
 				Swal.fire({
-					type: 'success',
+					icon: 'success',
 					width: 720,
 					customClass: 'swal-height-3',
 					title: 'Thank you for participating in the Business Simulation!',
@@ -267,7 +310,16 @@ export default function end_game(canvas, player, game_data, start) {
 					showConfirmButton: false,
 					allowOutsideClick: false,
 					allowEscapeKey: false,
-					animation: false,
+					showClass: {
+						popup: null,
+						backdrop: null,
+						icon: null
+					},
+					hideClass: {
+						popup: null,
+				  		backdrop: null,
+				  		icon: null
+					}
 				})
 			})
 		);
