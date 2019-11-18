@@ -5,6 +5,7 @@ import end_game_data from "/static/ajax_requests/end_game.js"
 import demographicsHtml from "/static/demographics.js"
 
 export default function end_game(canvas, player, game_data, start, response) {
+	end_game_data(response)
 	var data = {
 		"player": player,
 		"playerType": game_data["playerType"],
