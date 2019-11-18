@@ -1,4 +1,6 @@
 import final_questions from "/static/ajax_requests/final_questions.js"
+import final_questions from "/static/ajax_requests/end_game.js"
+
 // USE THIS TO STORE ENDING QUESTIONS ^^
 import demographicsHtml from "/static/demographics.js"
 
