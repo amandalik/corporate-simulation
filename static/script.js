@@ -34,7 +34,9 @@ window.onload = () => {
 	var individuals = instantiate.instantiate_individuals(availableHouses, canvas, grid, world, firms)
 	world.state.individuals = individuals;
 
-	var decisions = []
+	window.decisions = []
+	window.rotations = []
+	window.num_decisions = []
 
 	if (game_data["sim"] === 'y') {
 		grid.draw();
@@ -58,37 +60,32 @@ window.onload = () => {
 	var object = {}
 	setInterval(() => {
 		if (window.is_running) {
+			console.log(num_decisions)
 			if (num_decisions < 12) {
 				var decision = update_world(canvas, grid, world, firms, houses, availableHouses, individuals, time, player_number, game_data, num_decisions);
 				if (decision != null) {
-					decisions.push(decision)
 					num_decisions += 1;
-					if (num_decisions == 3) {
-						object = {"player": player_number, "data": JSON.stringify(decisions)};
-						end_game_data(object)
-						decisions = []
-					}
-					else if (num_decisions == 6) {
-						object = {"player": player_number, "data": JSON.stringify(decisions)};
-						end_game_data(object)
-						decisions = []
-					}
-					else if (num_decisions == 9) {
-						object = {"player": player_number, "data": JSON.stringify(decisions)};
-						end_game_data(object)
-						decisions = []
-					}
-					else if (num_decisions == 12) {
-						object = {"player": player_number, "data": JSON.stringify(decisions)};
-						end_game_data(object)
-					}
 				}
 				time+=10;
 			} else {
 				window.is_running = false;
+				var object = {
+					decisions: JSON.stringify(window.decisions),
+					player: player_number,
+					playerType: game_data.playerType,
+					numShareholderSelected: game_data.numShareholderSelected,
+					numEmployeeSelected: game_data.numEmployeeSelected,
+					numEnvironmentSelected: game_data.numEnvironmentSelected,
+					worldType: game_data.worldType,
+					sim: game_data.sim,
+					run_id: game_data.run_id,
+					num_decisions: JSON.stringify(window.num_decisions),
+					rotations: JSON.stringify(window.rotations)
+				}
+				end_game_data(object)
 				end_game(canvas, player_number, game_data, start)
 			}
 		}
-
 	}, 10);
 };
+
