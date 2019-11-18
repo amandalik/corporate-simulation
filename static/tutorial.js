@@ -4,7 +4,16 @@ const Tutorial = Swal.mixin({
 	confirmButtonText: '<i class="arrow right icon"></i>',
 	customClass: 'swal-height',
 	allowOutsideClick: false,
-	animation: false
+	showClass: {
+		popup: null,
+		backdrop: null,
+		icon: null
+	},
+	hideClass: {
+		popup: null,
+  		backdrop: null,
+  		icon: null
+	}
 });
 
 export function presentDecisionsSlide(res, world, game_data) {
@@ -139,8 +148,7 @@ export function presentBoardOfDirectorsSlide(res, world, game_data) {
 		Tutorial.fire({
 			html: '<h1 style="margin: auto auto 3vh auto">Board of Directors</h1>' +
 			'<div style="margin: auto 6vh 15vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">There may be other directors on the board of directors as well, potentially representing other stakeholders.' +
-			'</div>',
-			animation: false
+			'</div>'
 		}).then(result => presentOtherFirmsSlide(result, world, game_data))
 	}
 	else {

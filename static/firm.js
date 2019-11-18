@@ -151,6 +151,7 @@ export default class Firm {
 			diff = 1.0 - this.state.importances[max];
 			this.state.importances[max] = 1.0;
 			let keys = Object.keys(this.state.importances);
+			let dec = diff/(keys.length - 1)
 			for (let i = 0; i < keys.length; i++) {
 				let key = keys[i]
 				if (key != max) {

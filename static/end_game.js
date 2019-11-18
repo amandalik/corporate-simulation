@@ -3,7 +3,6 @@ import final_questions from "/static/ajax_requests/final_questions.js"
 import demographicsHtml from "/static/demographics.js"
 
 export default function end_game(canvas, player, game_data, start) {
-	console.log("Here")
 	var data = {
 		"player": player,
 		"playerType": game_data["playerType"],
@@ -33,9 +32,18 @@ export default function end_game(canvas, player, game_data, start) {
 	  	},
 	  	allowOutsideClick: false,
 	  	allowEscapeKey: false,
-	  	animation: false,
 	  	progressSteps: ['1', '2', '3', '4', '5'],
-	  	padding: '3rem'
+	  	padding: '3rem',
+	  	showClass: {
+			popup: null,
+			backdrop: null,
+			icon: null
+		},
+		hideClass: {
+			popup: null,
+  			backdrop: null,
+  			icon: null
+		}
 	})
 
 	if (game_data["sim"] === 'y') {
@@ -45,9 +53,18 @@ export default function end_game(canvas, player, game_data, start) {
 			confirmButtonText: '<i class="arrow right icon"></i>',
 			allowOutsideClick: false,
 			allowEscapeKey: false,
-			animation: false,
 			html: '<h1 style="margin: auto auto 3vh auto">End of Part 1</h1>' + 
-			'<div style="margin: auto 6vh 9.5vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">Thank you for your decisions.  Now we\'d like to ask you a few questions about your experience with this simulation.</div>'
+			'<div style="margin: auto 6vh 9.5vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">Thank you for your decisions.  Now we\'d like to ask you a few questions about your experience with this simulation.</div>',
+			showClass: {
+				popup: null,
+				backdrop: null,
+				icon: null
+			},
+			hideClass: {
+				popup: null,
+		  		backdrop: null,
+		  		icon: null
+			}
 		}).then(() =>
 			End.queue([
 			  {
@@ -110,7 +127,6 @@ export default function end_game(canvas, player, game_data, start) {
 					let gender = $('.gender').dropdown('get value');
 					if (gender === "ptsd") {
 						gender = $('.description').val();
-						console.log(gender)
 					}
 					return [country, age, gender, id]
 				}
@@ -136,7 +152,7 @@ export default function end_game(canvas, player, game_data, start) {
 				data["time_taken"] = totalTime
 				final_questions(data)
 				Swal.fire({
-					type: 'success',
+					icon: 'success',
 					width: 720,
 					customClass: 'swal-height-3',
 					title: 'Thank you for participating in the Business Simulation!',
@@ -144,7 +160,16 @@ export default function end_game(canvas, player, game_data, start) {
 					showConfirmButton: false,
 					allowOutsideClick: false,
 					allowEscapeKey: false,
-					animation: false
+					showClass: {
+						popup: null,
+						backdrop: null,
+						icon: null
+					},
+					hideClass: {
+						popup: null,
+				  		backdrop: null,
+				  		icon: null
+					}
 				})
 			})
 		);
@@ -168,9 +193,18 @@ export default function end_game(canvas, player, game_data, start) {
 		  	},
 		  	allowOutsideClick: false,
 		  	allowEscapeKey: false,
-		  	animation: false,
 		  	progressSteps: ['1', '2', '3', '4'],
-		  	padding: '3rem'
+		  	padding: '3rem',
+	  		showClass: {
+				popup: null,
+				backdrop: null,
+				icon: null
+			},
+			hideClass: {
+				popup: null,
+		  		backdrop: null,
+		  		icon: null
+			}
 		})
 
 		Swal.fire({
@@ -179,9 +213,18 @@ export default function end_game(canvas, player, game_data, start) {
 			confirmButtonText: '<i class="arrow right icon"></i>',
 			allowOutsideClick: false,
 			allowEscapeKey: false,
-			animation: false,
 			html: '<h1 style="margin: auto auto 3vh auto">End of Part 1</h1>' + 
-			'<div style="margin: auto 6vh 9.5vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">Thank you for your decisions.  Now we\'d like to ask you a few questions about your experience with this simulation.</div>'
+			'<div style="margin: auto 6vh 9.5vh 6vh; line-height: 1.5; font-size: 18px; text-align: left;">Thank you for your decisions.  Now we\'d like to ask you a few questions about your experience with this simulation.</div>',
+			showClass: {
+				popup: null,
+				backdrop: null,
+				icon: null
+			},
+			hideClass: {
+				popup: null,
+		  		backdrop: null,
+		  		icon: null
+			}
 		}).then(() =>
 			End.queue([
 			  {
@@ -259,7 +302,7 @@ export default function end_game(canvas, player, game_data, start) {
 				final_questions(data)
 
 				Swal.fire({
-					type: 'success',
+					icon: 'success',
 					width: 720,
 					customClass: 'swal-height-3',
 					title: 'Thank you for participating in the Business Simulation!',
@@ -267,7 +310,16 @@ export default function end_game(canvas, player, game_data, start) {
 					showConfirmButton: false,
 					allowOutsideClick: false,
 					allowEscapeKey: false,
-					animation: false,
+					showClass: {
+						popup: null,
+						backdrop: null,
+						icon: null
+					},
+					hideClass: {
+						popup: null,
+				  		backdrop: null,
+				  		icon: null
+					}
 				})
 			})
 		);

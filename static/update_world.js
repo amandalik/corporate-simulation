@@ -190,7 +190,6 @@ function present_decision(world, player_number, game_data, num_decisions){
 	  allowOutsideClick: false,
 	  allowEscapeKey: true,
 	  allowEnterKey: false,
-	  animation: false,
 	  onBeforeOpen: () => {
 	    var d = {
 	    	labels: ['Shareholder\nBenefit', 'Employee\nBenefit', 'Environmental\nBenefit'],
@@ -235,6 +234,16 @@ function present_decision(world, player_number, game_data, num_decisions){
 			data.new_c = world.state.firms[4].state.importances.eiImportance;
 			Swal.close()
 		}
+	  }, 
+	  showClass: {
+	  	  popup: null,
+		  backdrop: null,
+		  icon: null
+	  },
+	  hideClass: {
+		  popup: null,
+  		  backdrop: null,
+  		  icon: null
 	  }
 	});
 	return data
