@@ -59,32 +59,38 @@ window.onload = () => {
 	setInterval(() => {
 		if (window.is_running) {
 			if (num_decisions < 12) {
-				var decision = update_world(canvas, grid, world, firms, houses, availableHouses, individuals, time, player_number, game_data, num_decisions);
+				var decision = update_world(canvas, grid, world, firms, houses, availableHouses, individuals, time, player_number, game_data, num_decisions)
 				if (decision != null) {
-					decisions.push(decision)
-					num_decisions += 1;
-					if (num_decisions == 3) {
-						object = {"player": player_number, "data": JSON.stringify(decisions)};
-						end_game_data(object)
-						decisions = []
+					if (decision.decision != 1 && decision.decision != 2) {
+						console.log("this is a decision number " + decision.num_decision);
 					}
-					else if (num_decisions == 6) {
-						object = {"player": player_number, "data": JSON.stringify(decisions)};
-						end_game_data(object)
-						decisions = []
-					}
-					else if (num_decisions == 9) {
-						object = {"player": player_number, "data": JSON.stringify(decisions)};
-						end_game_data(object)
-						decisions = []
-					}
-					else if (num_decisions == 12) {
-						object = {"player": player_number, "data": JSON.stringify(decisions)};
-						end_game_data(object)
-					}
+					decisions.push({"decision": decision.decision, "rotation": decision.rotation})
+					num_decisions += 1
 				}
 				time+=10;
 			} else {
+				decision_array = array();
+				rotation_array = array();
+				num_decision_array = array();
+				for(var i = 0; i < 12; i++) {
+					decision_array.push(decisions[i].decision)
+					rotation_array.push(decisions[i].rotation)
+					num_decision_array.push(i+1)
+				}
+				object = {
+					decision: JSON.stringify(decision_array),
+					player: player_number,
+					playerType: game_data.playerType,
+					numShareholderSelected: game_data.numShareholderSelected,
+					numEmployeeSelected: game_data.numEmployeeSelected,
+					numEnvironmentSelected: game_data.numEnvironmentSelected,
+					worldType: game_data.worldType,
+					sim: game_data.sim,
+					run_id: game_data.run_id,
+					num_decision: JSON.stringify(num_decision_array),
+					rotation: JSON.stringify(rotation_array)
+				}
+				end_game_data(object)
 				window.is_running = false;
 				end_game(canvas, player_number, game_data, start)
 			}

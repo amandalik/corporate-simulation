@@ -237,7 +237,6 @@ function present_decision(world, player_number, game_data, num_decisions){
 		}
 	  }
 	});
-	return data
 }
 
 
