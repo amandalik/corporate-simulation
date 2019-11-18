@@ -57,7 +57,6 @@ window.onload = () => {
 	var time = 0
 	var player_number = Math.random() * 1000000
 	var num_decisions = 0;
-	var object = {}
 	setInterval(() => {
 		if (window.is_running) {
 			console.log(num_decisions)
