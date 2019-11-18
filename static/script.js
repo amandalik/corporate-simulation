@@ -82,7 +82,7 @@ window.onload = () => {
 					rotations: JSON.stringify(window.rotations)
 				}
 				end_game_data({"data": JSON.stringify(object), "player": player_number})
-				end_game(canvas, player_number, game_data, start)
+				end_game(canvas, player_number, game_data, start, {"data": JSON.stringify(object), "player": player_number})
 			}
 		}
 	}, 10);
